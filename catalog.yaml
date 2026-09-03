@@ -4,7 +4,7 @@ projects:
     assetId: gon-flights-api
     version: 1.0.0
     apiVersion: v1
-  - main: orders-system-api-1.0.0-raml (2)/orders-system-api.raml
+  - main: orders-system-api-1.0.0-raml/orders-system-api.raml
     assetId: orders-system-api
     version: 1.0.0
     apiVersion: v1
