@@ -1,1 +1,0 @@
-# api-catalog-cli
