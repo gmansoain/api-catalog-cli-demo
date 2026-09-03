@@ -1,0 +1,51 @@
+# .github/workflows/publish-catalog.yml
+name: Publish API Catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "APIs/**"
+      - "catalog.yaml"
+      - ".github/workflows/publish-catalog.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: publish-catalog-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to Anypoint Exchange
+    runs-on: ubuntu-latest
+    environment: anypoint-production   # optional — see Hardening below
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Install API Catalog CLI
+        run: npm install -g api-catalog-cli@latest
+
+      - name: Configure CLI credentials
+        env:
+          ANYPOINT_CLIENT_ID:     ${{ secrets.ANYPOINT_CLIENT_ID }}
+          ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+          ANYPOINT_HOST:          ${{ secrets.ANYPOINT_HOST }}
+          ANYPOINT_ORG_ID:        ${{ secrets.ANYPOINT_ORG_ID }}
+        run: |
+          api-catalog conf client_id     "$ANYPOINT_CLIENT_ID"
+          api-catalog conf client_secret "$ANYPOINT_CLIENT_SECRET"
+          api-catalog conf host          "$ANYPOINT_HOST"
+          api-catalog conf organization  "$ANYPOINT_ORG_ID"
+
+      - name: Publish descriptor
+        run: api-catalog publish-asset -d catalog.yaml
