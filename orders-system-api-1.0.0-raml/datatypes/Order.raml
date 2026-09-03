@@ -1,0 +1,46 @@
+#%RAML 1.0 DataType
+type: object
+properties:
+  orderId:
+    type: integer
+    description: Unique identifier for the order
+  customerId:
+    type: integer
+    description: Unique identifier for the customer
+    required: true
+  orderDate:
+    type: datetime
+    description: Date and time when the order was placed
+    required: true
+  shippingAddress:
+    type: string
+    description: Address where the order should be shipped
+    required: true
+  billingAddress:
+    type: string
+    description: Address for billing
+    required: true
+  totalAmount:
+    type: number
+    format: float
+    description: Total amount for the order
+    required: true
+  orderStatus:
+    type: string
+    enum: [Pending, Shipped, Delivered, Cancelled]
+    description: Current status of the order
+    required: true
+  paymentMethod:
+    type: string
+    enum: [Credit Card, PayPal]
+    description: Payment method used for the order
+    required: true
+  shippingMethod:
+    type: string
+    enum: [Standard, Express]
+    description: Shipping method selected
+    required: true
+
+examples:
+  ex1: !include ../examples/OrderExample1.raml
+  ex2: !include ../examples/OrderExample2.raml

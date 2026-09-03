@@ -1,0 +1,14 @@
+#%Catalog Descriptor 1.0
+projects:
+  - main: gon-flights-api-1.0.3-raml/gon-flights-api.raml
+    assetId: gon-flights-api
+    version: 1.0.0
+    apiVersion: v1
+  - main: orders-system-api-1.0.0-raml (2)/orders-system-api.raml
+    assetId: orders-system-api
+    version: 1.0.0
+    apiVersion: v1
+  - main: twilio-system-api-1.0.1-fat-oas/api.json
+    assetId: twilio-system-api
+    version: 1.0.0
+    apiVersion: v1

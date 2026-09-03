@@ -1,0 +1,90 @@
+#%RAML 1.0
+title: GON Flights API
+
+mediaType:
+  - application/json
+
+types:
+  Flight: !include datatypes/Flight.raml
+  FlightNoID: !include datatypes/FlightNoID.raml
+
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+    responses:
+      401:
+        description: Unauthorized, The client_id or client_secret are not valid or the client does not have access.
+      429:
+        description: The client used all of its request quota for the current period.
+      500:
+        description: An error occurred, see the specific message (Only if it is a WSDL endpoint).
+      503:
+        description: Contracts Information Unreachable.
+
+/flights:
+  get:
+    is: [client-id-required]
+    queryParameters:
+      destination:
+        required: true
+        type:
+          enum:
+            - LAX
+            - CLE
+            - SFO
+    description: Retrieve List of Flights
+    displayName: GET Flights
+    responses:
+      200:
+        body:
+          type: Flight[]
+  /{ID}:
+    get:
+      is: [client-id-required]
+      description: Retrieve a Flight by ID
+      displayName: GET Flight by ID
+      responses:
+        200:
+          body:
+            type: Flight
+    
+    put:
+      is: [client-id-required]
+      description: Update Flight by ID
+      displayName: UPDATE Flight by ID
+      body:
+        type: Flight
+      responses:
+        201:
+          body:
+            example:
+              message: Flight updated (but not really)
+    delete:
+      is: [client-id-required]
+      description: Delete Flight by ID
+      displayName: DELETE Flight by ID
+      responses:
+        200:
+          body:
+            example:
+              message: Flight deleted (but not really)
+
+  post:
+    is: [client-id-required]
+    description: Creates a New Flight
+    displayName: CREATE Flight
+    body:
+      type: FlightNoID
+    responses:
+      201:
+        body:
+          example:
+            message: Flight added (but not really)
+
+  
+
+  

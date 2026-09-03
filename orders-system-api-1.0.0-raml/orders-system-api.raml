@@ -1,0 +1,86 @@
+#%RAML 1.0
+title: Orders System API
+version: v1
+mediaType: 
+- application/json
+
+types:
+  Order: !include datatypes/Order.raml
+  OrderNoID: !include datatypes/OrderNoID.raml
+  Response201: !include datatypes/Response201.raml
+  Error404: !include datatypes/Error404.raml
+
+/orders:
+  get:
+    description: Retrieve a list of all orders
+    displayName: List of Orders
+    responses:
+      200:
+        body:
+          application/json:
+            type: Order[]
+  
+  post:
+    description: Create a new order
+    displayName: New Order
+    body:
+      application/json:
+        type: OrderNoID
+    responses:
+      201:
+        body:
+          application/json:
+            type: Response201
+
+  /{orderId}:
+    uriParameters:
+      orderId:
+        description: Unique identifier for the order
+        type: integer
+        required: true
+
+    get:
+      description: Retrieve details of a specific order by ID
+      displayName: Details of an Order
+      responses:
+        200:
+          body:
+            application/json:
+              type: Order
+        404:
+          description: Order not found
+          body:
+            application/json:
+              type: Error404
+    put:
+      description: Update an existing order
+      displayName: Update Order
+      body:
+        application/json:
+          type: OrderNoID
+      responses:
+        201:
+          body:
+            application/json:
+              type: Response201
+              
+        404:
+          description: Order not found
+          body:
+            application/json:
+              type: Error404
+
+    delete:
+      description: Delete a specific order by ID
+      displayName: Delete Order
+      responses:
+        201:
+          body:
+            application/json:
+              type: Response201
+              
+        404:
+          description: Order not found
+          body:
+            application/json:
+              type: Error404

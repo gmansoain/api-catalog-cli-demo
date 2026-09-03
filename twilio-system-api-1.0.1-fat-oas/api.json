@@ -1,0 +1,392 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Twilio System API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/sms/message": {
+      "post": {
+        "operationId": "Send SMS",
+        "description": "Send a new SMS message.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fromNumber",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "toNumber",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "client_id",
+            "required": true,
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "client_secret",
+            "required": true,
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "x-amf-mediaType": "application/json",
+            "in": "body",
+            "name": "generated",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/Response201"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid client application credentials",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "500": {
+            "description": "Bad response from authorization server, or WSDL SOAP Fault error",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "400": {
+            "description": "The server cannot or will not process the request due to something that is perceived to be a client error.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "403": {
+            "description": "The server has refused access to the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "405": {
+            "description": "The request method is not supported for the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "406": {
+            "description": "The target resource does not have a current representation that would be acceptable to the user agent.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "415": {
+            "description": "The accept header specified an unsupported media type.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "429": {
+            "description": "An API request rate limit has been exceeded.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "501": {
+            "description": "The method has not been implemented.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          }
+        }
+      }
+    },
+    "/whatsapp/message": {
+      "post": {
+        "operationId": "Send Whatsapp",
+        "description": "Send a new Whatsapp",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fromNumber",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "toNumber",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "client_id",
+            "required": true,
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "client_secret",
+            "required": true,
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "x-amf-mediaType": "application/json",
+            "in": "body",
+            "name": "generated",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/Response201"
+            }
+          },
+          "401": {
+            "description": "Unauthorized or invalid client application credentials",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "500": {
+            "description": "Bad response from authorization server, or WSDL SOAP Fault error",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "400": {
+            "description": "The server cannot or will not process the request due to something that is perceived to be a client error.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "403": {
+            "description": "The server has refused access to the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "404": {
+            "description": "The server cannot find the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "405": {
+            "description": "The request method is not supported for the requested resource.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "406": {
+            "description": "The target resource does not have a current representation that would be acceptable to the user agent.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "415": {
+            "description": "The accept header specified an unsupported media type.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "429": {
+            "description": "An API request rate limit has been exceeded.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          },
+          "501": {
+            "description": "The method has not been implemented.",
+            "x-amf-mediaType": "application/json",
+            "schema": {
+              "$ref": "#/definitions/type"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Message": {
+      "x-amf-examples": {
+        "ex1": {
+          "message": "This is a message from a Mule App"
+        },
+        "ex2": {
+          "message": "This is another message from a Mule App"
+        }
+      },
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Response201": {
+      "example": {
+        "responseCode": 201,
+        "responseMessage": "SUCCESS - Message sent"
+      },
+      "type": "object",
+      "required": [
+        "responseCode",
+        "responseMessage"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer"
+        },
+        "responseMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "description": "Represents a standard message body to be returned with error responses",
+      "x-amf-examples": {
+        "example_2": {
+          "errorCode": "405",
+          "errorMessage": "The target resource does not support the requested method",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "amf_example_1": {
+          "errorCode": "404",
+          "errorMessage": "Requested resource was not found",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "example_1": {
+          "errorCode": "403",
+          "errorMessage": "Access to the requested resource was denied",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "amf_example_5": {
+          "errorCode": "401",
+          "errorMessage": "Required credentials are missing or invalid",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "amf_example_2": {
+          "errorCode": "500",
+          "errorMessage": "The server was unable to process the request due to an internal error",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "example_4": {
+          "errorCode": "429",
+          "errorMessage": "The server is refusing to handle the request because a rate limit has been exceeded.",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "amf_example_4": {
+          "errorCode": "501",
+          "errorMessage": "Not Implemented",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "example_0": {
+          "errorCode": "400",
+          "errorMessage": "Invalid request message",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "amf_example_3": {
+          "errorCode": "415",
+          "errorMessage": "The server is refusing to the request because it is not in a format supported by the target resource.",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        },
+        "example_3": {
+          "errorCode": "406",
+          "errorMessage": "The requested resource cannot generate acceptable content according to the Accept headers sent in the request.",
+          "transactionId": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "timeStamp": "2019-09-30T15:27:49.274Z"
+        }
+      },
+      "type": "object",
+      "required": [
+        "errorCode",
+        "errorMessage",
+        "transactionId",
+        "timeStamp"
+      ],
+      "properties": {
+        "errorCode": {
+          "description": "Short code to identify the error",
+          "example": "INVALID_PARAMETER",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Verbose human readable error message",
+          "example": {
+            "value": "The value you entered is out of bounds"
+          },
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "Request identifier",
+          "example": "dd960082-abbf-47c2-8c65-f18eeb35848b",
+          "type": "string"
+        },
+        "timeStamp": {
+          "description": "event date time",
+          "example": "2019-09-23T11:46:44.256-05:00",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
